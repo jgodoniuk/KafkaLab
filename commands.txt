@@ -1,0 +1,4 @@
+confluent login --save
+confluent kafka topic list
+confluent kafka topic create input-topic --partitions 3
+confluent kafka topic create test-topic --partitions 3

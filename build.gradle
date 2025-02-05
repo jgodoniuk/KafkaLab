@@ -1,0 +1,38 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.qbology'
+version = '1.0-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_23 // Set to your desired Java version
+    targetCompatibility = JavaVersion.VERSION_23 // Set to your desired Java version
+}
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '--enable-preview'
+}
+
+tasks.withType(Test) {
+    jvmArgs '--enable-preview'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.slf4j:slf4j-simple:2.0.7'
+    implementation 'org.apache.kafka:kafka-clients:3.7.1'
+
+    testImplementation "org.apache.kafka:kafka-streams-test-utils:3.4.0"
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
